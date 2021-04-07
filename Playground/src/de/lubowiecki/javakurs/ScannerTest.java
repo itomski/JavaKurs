@@ -9,16 +9,44 @@ public class ScannerTest {
 	
 	public static void main(String[] args) {
 		
-		System.out.print("Eingabe: ");
-		String eingabe = input.nextLine();
 		
-		System.out.println(">>> " + eingabe);
+		while(true) {
+			System.out.print("Eingabe: ");
+			String eingabe = input.nextLine();
+			System.out.println(">>> " + eingabe);
+			
+			if(eingabe.equalsIgnoreCase("exit")) {
+				break;
+			}
+//			else if(eingabe.equalsIgnoreCase("add")) {
+//				//...
+//			}
+			
+			System.out.print("Zahl: ");
+			double d = input.nextDouble();
+			System.out.println(">>> " + d);
+			
+			System.out.print("Zahl: ");
+			int i = input.nextInt();
+			System.out.println(">>> " + i);
+			
+			input.nextLine(); // fix
+		}
 		
-		System.out.print("Zahl: ");
-		double d = input.nextDouble();
-		
-		System.out.println(">>> " + d);
+		System.out.println("Ende");
+	}
 
+	void machWas() {
+	}
+	
+	// Methode wurde überladen
+	void machWas(String s) {
+		
+	}
+	
+	// Methode wurde überladen
+	void machWas(int i) {
+		
 	}
 
 }
