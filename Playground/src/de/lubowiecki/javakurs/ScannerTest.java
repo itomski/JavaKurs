@@ -46,7 +46,7 @@ public class ScannerTest {
 	
 	// Methode wurde überladen
 	void machWas(int i) {
-		
+		// Hallo Welt
 	}
 
 }
