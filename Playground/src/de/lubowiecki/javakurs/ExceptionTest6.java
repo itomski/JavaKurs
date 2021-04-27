@@ -1,12 +1,22 @@
 package de.lubowiecki.javakurs;
 
+import java.io.FileNotFoundException;
+
 public class ExceptionTest6 {
 
+	int i; // Standardwert 0
+	double d; // 0.0
+	Byte b; // null
+	
 	public static void main(String[] args) {
 		
 		new SprachErkennung().parse("Das ist ein Haus von Nikigraus...");
-
+		
 	}
+	
+	
+	
+	
 
 }
 
