@@ -25,5 +25,19 @@ public class OperatorTest {
 //		char c = 1_000_000;
 //		System.out.println(c);
 		
+		
+		//System.out.println("A" + 2 * 3 - 5);
+		//System.out.println("A6" - 5);
+		
+		// increment/dekrement und zusammengestzte Operatoren nur auf Variablen
+		int x; // Lokale Variablemen bekommen keine Standardwerte
+		//System.out.println(1 - --x + 3); // Error: x ist NICHT initialisiert
+		
+		int k = 0; // 1 / 11 / 12
+		int m = 10;
+		k = ++k;
+		k = k++ + m; // 1 + 10, postfix wird vergessen
+		System.out.println(++k);
+		
 	}
 }
