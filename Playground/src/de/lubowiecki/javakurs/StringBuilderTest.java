@@ -15,14 +15,18 @@ public class StringBuilderTest {
 		sb.append("graus... das ist ein cooler Typ");
 		System.out.println(sb.length() + " " + sb.capacity());
 		
-		System.out.println("--------");
+		System.out.println("---LOOP---");
+		
+		// Vergrößerung: Neue capacity = Alte capacity * 2 + 2
+		// 16 / 32+2 / 68+2 / 140 + 2
 		
 		StringBuilder sb2 = new StringBuilder(100); // Startkapazität: wird vorgegeben
 		System.out.println(sb2.length() + " " + sb2.capacity());
-		for(int i = 0; i < 101; i++) {
+		for(int i = 0; i < 100; i++) {
 			sb2.append(i);
 		}
 		System.out.println(sb2.length() + " " + sb2.capacity());
+		
 		sb2.trimToSize(); // Reduziert die Kapazität auf die tatsächliche Anzahl der Zeichen
 		System.out.println(sb2.length() + " " + sb2.capacity());
 
