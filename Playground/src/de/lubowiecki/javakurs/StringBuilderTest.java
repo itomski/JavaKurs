@@ -69,8 +69,25 @@ public class StringBuilderTest {
 		System.out.println(p);
 		
 		// Statische Methoden
+		// ofYears liefert ein Period Objekt, ofMonths benutzt das Objekt um die Klasse zu ermitteln
+		// und wird statisch auf dieser Klasse aufgerufen.
+		// Erg, ofYears wird für ofMonths nicht verwendet
 		p = Period.ofYears(2).ofMonths(10);
 		System.out.println(p);
+		
+		// Referenz ist in Java immer 4 bytes
+		String[] arr = new String[100]; // Preis für die Referenzen: 404 bytes + Objektgröße auf dem Heap
+		
+		// int 32bit / 4 bytes
+		int[] arr2 = new int[100];  // 404 bytes
+		
+		// long 64bit / 8 bytes
+		long[] arr3 = new long[100];  // 804 bytes
+		long[][] arr5 = new long[100][100];  // 80.004 bytes, mehr als 80kb
+		
+		Integer[] arr4 = new Integer[100];  // 404 bytes für die Referenzen + Objektgröße auf dem Heap
+		
+		System.out.println(arr4[200]); // Zur Laufzeit: ArrayIndexOutOfBoundsException
 		
 	}
 
