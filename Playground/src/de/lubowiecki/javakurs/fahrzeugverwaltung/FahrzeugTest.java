@@ -24,39 +24,58 @@ public class FahrzeugTest {
 		reifen.add(new Reifen());
 		reifen.add(new Reifen());
 		
-		Fahrzeug f = new Fahrzeug(new Motor(), reifen, new Radio());
+		// Die Klasse arbeitet jetzt nicht mit einer anderen konkreten Motor-Klasse zusammen
+		// sondern mit allen Klassen die das Interface Motor implementieren 
+		Fahrzeug f = new Fahrzeug(new BenzinMotor(), reifen, new Radio());
 		
-		f.getRadio().einschalten();
-		System.out.println(f.getRadio().isAn());
-
-		Radio r = f.getRadio();
+		// Mit dem Radio interagieren
+//		f.getRadio().einschalten();
+//		System.out.println(f.getRadio().isAn());
+//
+//		Radio r = f.getRadio();
+//		r.ausschalten();
+//		System.out.println(r.isAn());
+//		System.out.println(f.getRadio().isAn());
+//		
+//		r.addSender(new Sender("Delta Radio", 95.5));
+//		r.addSender(new Sender("Radio Hamburg", 92.2));
+//		
+//		r.waehleSender(1);
+//		System.out.println(r);
+//		r.einschalten();
+//		System.out.println(r);
 		
-		r.ausschalten();
-		System.out.println(r.isAn());
-		System.out.println(f.getRadio().isAn());
+		System.out.println();
 		
-		r.addSender(new Sender("Delta Radio", 95.5));
-		r.addSender(new Sender("Radio Hamburg", 92.2));
-		
-		r.waehleSender(1);
-		System.out.println(r);
-		r.einschalten();
-		
-		System.out.println(r);
+		f.start(); // Ruft die Methode in Zeile 67 auf
 	}
 }
 
 class Fahrzeug {
 	
 	// HAS-A
-	private Motor motor;
+	// hier können Objekte von Klassen eingesetzt werden,
+	// die das Interface Motor implementieren
+	private Motor motor; 
+	
 	private List<Reifen> reifen;
+	
 	private Radio radio;
 	
 	public Fahrzeug(Motor motor, List<Reifen> reifen, Radio radio) {
 		this.motor = motor;
 		this.reifen = reifen;
 		this.radio = radio;
+	}
+	
+	public void start() {
+		radio.einschalten(); // Ruft die Methode in Zeile 185 auf
+		if(motor.start()) {
+			System.out.println("Fahrzeug wurde gestartet");
+		}
+		else {
+			System.out.println("Fehler beim start");
+		}
 	}
 	
 	public Motor getMotor() {
@@ -83,9 +102,65 @@ class Fahrzeug {
 	}
 }
 
-class Motor {
-	
-	// Eigenschaften des Motor
+// tight coupling
+//class Motor {
+//	
+//	// Eigenschaften des Motor
+//}
+
+//loose coupling
+// Interface beschreibt, was ein Motor an Methoden bereitstellen muss
+interface Motor {
+	boolean start();
+	boolean stop();
+}
+
+// Klasse erfüllt die Vorgaben des Interface
+class ElektroMotor implements Motor {
+
+	@Override
+	public boolean start() {
+		System.out.println("Elektromotor: Test, start...");
+		return true;
+	}
+
+	@Override
+	public boolean stop() {
+		// TODO Stoppen des Elektromotors im Detail ausprogrammieren
+		return false;
+	}
+}
+
+//Klasse erfüllt die Vorgaben des Interface
+class BenzinMotor implements Motor {
+
+	@Override
+	public boolean start() {
+		System.out.println("Benzinmotor: Start, Benzing einsaugen, verbrennen, CO2 produzieren");
+		return true;
+	}
+
+	@Override
+	public boolean stop() {
+		// TODO Stoppen des Benzinmotors im Detail ausprogrammieren
+		return false;
+	}
+}
+
+//Klasse erfüllt die Vorgaben des Interface
+class MausMotor implements Motor {
+
+	@Override
+	public boolean start() {
+		System.out.println("Mausmotor: Start, Möre und Wasser bereitstellen...");
+		return false;
+	}
+
+	@Override
+	public boolean stop() {
+		// TODO Stoppen des Motors m it zwei Mäusen im Laufrad im Detail ausprogrammieren
+		return false;
+	}
 }
 
 class Reifen {
@@ -116,10 +191,12 @@ class Radio {
 
 	public void einschalten() {
 		this.an = true;
+		System.out.println(this);
 	}
 	
 	public void ausschalten() {
 		this.an = false;
+		System.out.println(this);
 	}
 	
 	@Override
