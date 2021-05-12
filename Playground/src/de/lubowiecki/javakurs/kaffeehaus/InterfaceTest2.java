@@ -12,5 +12,14 @@ public class InterfaceTest2 {
 		Kaffee tasse1 = automat.bereiteKaffeeZu();
 		System.out.println(tasse1);
 		
+		// Ist nicht im EspressoAutomat ausprogrammiert
+		// Standardimplementierung liegt im KaffeeAutomat vor
+		automat.reinigung();
+		
+		// Klassen vererben ihre statischen Methoden
+		// Interfaces vererben ihre statischen Methoden NICHT
+		// automat.info(); // Error
+		KaffeeAutomat.info();
+		
 	}
 }
