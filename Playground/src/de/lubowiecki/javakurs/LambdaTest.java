@@ -1,5 +1,6 @@
 package de.lubowiecki.javakurs;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +27,8 @@ public class LambdaTest {
 		
 		// Ein Lambda ist die Kurzschreibweise für die Implementierung einer abstrakten Methode
 		
-		List<Integer> list = Arrays.asList(10,20,30,40,50,60);
+		//List<Integer> list = Arrays.asList(10,20,30,40,50,60);
+		List<Integer> list = new ArrayList<>(); // Objekttyp (rechts) und Referenztyp (links) müssen verwandt sein
 		show(list, n1);
 		
 		System.out.println();
@@ -63,7 +65,13 @@ public class LambdaTest {
 		// Error: Hier ist unbekannt welches Template für das Lambda verwendet wird
 		// o = (a) -> System.out.println(a); 
 		
+		NextIA n4 = (z) -> System.out.println(z);
 		
+		NextIA n5 = (z) -> {
+			System.out.println(z);
+		};
+		
+		List<Integer> list2 = new ArrayList<>();	
 	}
 	
 	// n muss eine Implementierung des NextIA sein d.h. die machWas-Methode bereitstellen
