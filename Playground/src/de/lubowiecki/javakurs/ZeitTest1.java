@@ -7,6 +7,8 @@ import java.time.Month;
 import java.time.Period;
 import java.time.Year;
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 
 public class ZeitTest1 {
@@ -75,7 +77,40 @@ public class ZeitTest1 {
 		Period p3 = Period.between(LocalDate.of(2022, 6, 15), LocalDate.now());
 		System.out.println(p3);
 		
-
+		// Formatieren
+		DateTimeFormatter df = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG); // passt die Ausgabe an die lokalen Formate
+		DateTimeFormatter tf = DateTimeFormatter.ofLocalizedTime(FormatStyle.FULL);
+		DateTimeFormatter dtf = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL);
+		//System.out.println(ld.format(dtf)); // Error: in LocalDate ist keine Zeit enthalten
+		// FULL: Montag, 19. Juli 2021
+		// LONG: 19. Juli 2021
+		// MEDIUM: 19.07.2021
+		// SHORT: 19.07.21
+		System.out.println(ld.format(df)); // Error: in LocalDate ist keine Zeit enthalten
+		
+		// D = Tag des Jahres
+		// d = Tag des Monats
+		// E = Tag der Woche
+		// M = Monat
+		// m = Minute
+		// s = Sekunde
+		// h = Stunde
+		// y = Jahr
+		// u = auch Jahr
+		
+		df = DateTimeFormatter.ofPattern("dd.MM.yyyy");  // auch möglich: "dd.MM.uuuu"
+		System.out.println(ld.format(df));
+		
+		System.out.println(df.format(ld));
+		
+		System.out.println();
+		
+		df = DateTimeFormatter.ofPattern("d.M.yyyy");
+		LocalDate ld3 = LocalDate.parse("2.10.2021", df);
+		System.out.println(ld3); // toString: yyyy-MM-dd
+		
+		System.out.println(ld3.format(df));
+		
 	}
 
 }
