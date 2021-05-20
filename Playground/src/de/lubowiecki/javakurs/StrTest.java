@@ -32,7 +32,9 @@ public class StrTest {
 		System.out.println(s2 == x); // s2 und x zeigen auf das gleich null auf dem Speicher
 
 		
-		String s = "Moin";
+		String s = "Moin"; // Landet im String-Pool
+		s = new String("Moin"); // Landet NICHT im Pool
+		
 		Object o = s; // Ok: String IS-A Object
 		s = (String) o; // Nicht jedes Objekt ist ein String, daher  Cast
 		
