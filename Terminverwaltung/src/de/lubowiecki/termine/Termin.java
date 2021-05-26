@@ -2,11 +2,13 @@ package de.lubowiecki.termine;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 // Serializable: erlaubt, dass dieses Objekt serialisiert wird
 // sonst entsteht eine NotSerializableException
-public class Termin implements Serializable {
+// Comparable<Termin> bedeutet dass ein Termin nur mit einem Termin vergleichbar ist
+public class Termin implements Serializable, Comparable<Termin> {
 	
 	private LocalDate datum;
 	
@@ -55,5 +57,14 @@ public class Termin implements Serializable {
 	@Override
 	public String toString() {
 		return "Termin [datum=" + datum + ", uhrzeit=" + uhrzeit + ", beschreibung=" + beschreibung + "]";
+	}
+
+	@Override
+	public int compareTo(Termin other) {
+		
+		//return LocalDateTime.of(this.datum, this.uhrzeit).compareTo(LocalDateTime.of(other.getDatum(), other.getUhrzeit()));
+		
+		// Reverse
+		return LocalDateTime.of(other.getDatum(), other.getUhrzeit()).compareTo(LocalDateTime.of(this.datum, this.uhrzeit));
 	}
 }

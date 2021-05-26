@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Verwaltung {
 
@@ -19,7 +20,7 @@ public class Verwaltung {
 	
 	public void start() {
 		
-		
+		// In Datei gespeicherte Objekte werden gelesen und als Set in termine abgelegt
 		if(!readFromFile()) {
 			System.out.println("Altdaten konnten nicht gelesen werden.");
 		}
@@ -55,6 +56,7 @@ public class Verwaltung {
 			}
 		}
 		
+		// Das termine-Set inkl. Inhalt wird in die Datei gespeichert 
 		if(!saveToFile()) {
 			System.out.println("Daten konnten nicht gespeichert werden.");
 		}
@@ -66,9 +68,9 @@ public class Verwaltung {
 		// Speichert Objekt in Dateien
 		// Snippet
 		try {
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE));
-			out.writeObject(termine);
-			out.close();
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE)); // Verbindung (Schrei-Zugriff) zur Datei wird geöffnet
+			out.writeObject(termine); // termine-Set wird in Text umgewandelt und in eine Datei geschrieben
+			out.close(); // Verbindung zur Datei wird geschlossen
 			return true;
 		}
 		catch (IOException e) {
@@ -82,9 +84,9 @@ public class Verwaltung {
 		// Liest Objekt aus Dateien
 		// Snippet
 		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(FILE));
-			termine = (Set<Termin>) in.readObject();
-			in.close();
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(FILE)); // Verbindung (Lese-Zugriff) zur Datei wird geöffnet
+			termine = (Set<Termin>) in.readObject(); // Text wird gelesen und in ein Set von Terminen umgewandelt
+			in.close(); // Verbindung zur Datei wird geschlossen
 			return true;
 		}
 		catch (IOException e) {
@@ -93,7 +95,10 @@ public class Verwaltung {
 		catch (ClassNotFoundException e) {
 			//..
 		}
-		termine = new HashSet<>();
+		//termine = new HashSet<>(); // ungeordnet
+		termine = new TreeSet<>(); // sortiert (immer)
+		// Inhalt von Set muss das Comparable-Interface implementieren
+		// Comparable bedeutet, dass die Objekte vergleichbar/sortierbar sind
 		return false;
 	}
 }
