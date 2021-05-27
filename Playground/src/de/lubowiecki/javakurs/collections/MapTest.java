@@ -1,10 +1,14 @@
 package de.lubowiecki.javakurs.collections;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MapTest {
 
@@ -57,9 +61,27 @@ public class MapTest {
 		
 		System.out.println(heros2.getOrDefault("Peter Parker", new ArrayList<>()));
 		
-		// Bücherverwaltung - Map<String, Book> - String soll ISBN sein
 		
+		// System.out.println(System.getProperties()); // Properties sind Maps mit einigen extra Methoden, Keys sind Strings
+		System.out.println(System.getProperties().get("java.library.path"));
 		
+		Map<Integer, String> map = new TreeMap<>();
+		// Files: Utility-Klasse aus NIO zum Arbeiten mit Datein und Verzeichnissen
+		// Path ist ein Pfad auf der aktuellen Rechner
+		
+		try {
+		
+			// wenn nicht weiter eingegeben, dann wird text.txt im Root-Ordener des Programms gesucht
+			List<String> zeilen = Files.readAllLines(Paths.get("text.txt")); // liest den Inhalt der Datei aus und liefert alle Zeilen in einer Liste
+			
+			for(String zeile: zeilen) {
+				map.put(zeile.length(), zeile);
+			}
+			
+			System.out.println(map);
+		}
+		catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 	}
-
 }
