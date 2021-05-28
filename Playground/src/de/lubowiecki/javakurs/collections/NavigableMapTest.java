@@ -1,8 +1,10 @@
 package de.lubowiecki.javakurs.collections;
 
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -55,5 +57,14 @@ public class NavigableMapTest {
 		for(Entry<LocalDate, String> e : termine3.entrySet()) {
 			System.out.println(e.getKey() + ": " + e.getValue());
 		}
+		
+//		Set<String> set = new LinkedHashSet<>();
+//		set.add(new String("Chicago"));
+//		set.add(new String("Boston"));
+//		set.add(new String("Alabama"));
+//		set.add(new String("Chicago"));
+//		
+//		System.out.println(set);
+		
 	}
 }
