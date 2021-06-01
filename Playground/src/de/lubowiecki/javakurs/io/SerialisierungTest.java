@@ -23,9 +23,9 @@ public class SerialisierungTest {
 //		data.add("Natasha");
 		
 //		Map<String, User> data = new HashMap<>();
-//		data.put("spiderman", new User("Peter", "Parker", LocalDate.of(1992, 12, 2), "spiderman@shield.org"));
-//		data.put("ironman", new User("Tony", "Stark", LocalDate.of(1976, 5, 5), "ironman@shield.org"));
-//		data.put("hulk", new User("Bruce", "Banner", LocalDate.of(1983, 10, 11), "hulk@shield.org"));
+//		data.put("spiderman", new User("Peter", "Parker", LocalDate.of(1992, 12, 2), "spiderman@shield.org", "geheim"));
+//		data.put("ironman", new User("Tony", "Stark", LocalDate.of(1976, 5, 5), "ironman@shield.org", "abc"));
+//		data.put("hulk", new User("Bruce", "Banner", LocalDate.of(1983, 10, 11), "hulk@shield.org", "cde"));
 //		
 //		// Schreiben
 //		try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE))) {
@@ -42,7 +42,7 @@ public class SerialisierungTest {
 			dest = (Map<String, User>) in.readObject(); // Der Inhalt der Datei wird eingelesen und in Objekte übersetzt
 		} 
 		catch (IOException | ClassNotFoundException e) { // Multi-Catch
-			System.out.println("Daten konnten nicht gelesen werden.");
+			System.out.println("Daten konnten nicht gelesen werden. " + e.getMessage());
 		}
 
 		System.out.println(dest);
@@ -55,16 +55,21 @@ public class SerialisierungTest {
 		// Alles was gespeichert oder wiederhergestellt wird, muss das (Marker-)Interface Serializable implementieren
 		
 		
+		System.out.println();
+		
 	}
 }
 
-
 class User implements Serializable {
+	
+	// Versionsnummer der Klasse
+	private static final long serialVersionUID = 1745650769302653777L;
 	
 	private String firstname;
 	private String lastname;
 	private LocalDate birthDate;
 	private String email;
+	
 	
 	public User(String firstname, String lastname, LocalDate birthDate, String email) {
 		this.firstname = firstname;
@@ -97,6 +102,7 @@ class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	@Override
 	public String toString() {
 		return "User [firstname=" + firstname + ", lastname=" + lastname + ", birthDate=" + birthDate + ", email="

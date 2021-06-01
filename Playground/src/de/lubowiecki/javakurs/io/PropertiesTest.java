@@ -64,5 +64,14 @@ public class PropertiesTest {
 		}
 		
 		System.out.println(nextProp);
+		
+//		machWas(Wochentag.DO);
 	}
+	
+//	public static void machWas(Wochentag tag) {
+//	}
 }
+
+//enum Wochentag {
+//	MO, DI, Mi, DO, FR, SA, SO;
+//}
