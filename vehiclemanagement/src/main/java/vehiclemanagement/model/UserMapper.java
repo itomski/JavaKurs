@@ -10,6 +10,8 @@ import java.util.List;
 
 public class UserMapper {
 	
+	// CRUD - Create Read Update Delete
+	
 	public List<User> find() throws SQLException {
 		
 		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
@@ -19,11 +21,55 @@ public class UserMapper {
 			
 			List<User> users = new ArrayList<>();
 			
-			while(results.next()) {
+			while(results.next()) { // next springt zu der nächsten Zeile in der Ergebnis-Menge (ResultSet)
 				users.add(create(results)); 
 			}
 			
 			return users;
+		}
+	}
+	
+	public User find(int id) throws SQLException {
+		
+		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
+			
+			String sql  = "SELECT * FROM user WHERE id = " + id;
+			ResultSet results = stmt.executeQuery(sql); // executeQuery ist nur für SELECT nutzbar
+			
+			if(results.next()) {
+				return create(results); 
+			}
+			
+			return null;
+		}
+	}
+	
+	public boolean insert(User u) throws SQLException {
+		// TODO: implementieren!
+		throw new UnsupportedOperationException();
+	}
+	
+	public boolean update(User u) throws SQLException {
+		// TODO: implementieren!
+		throw new UnsupportedOperationException();
+	}
+	
+	// Löscht einen Datensatz, verlangt ein User-Objekt als Attribut
+	public boolean delete(User u) throws SQLException {
+		if(delete(u.getId())) {
+			u.setId(0);
+			return true;
+		}
+		return false;
+	}
+	
+	// Löscht einen Datensatz, verlangt nur die User-ID als Attribut
+	public boolean delete(int id) throws SQLException {
+		
+		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
+			
+			String sql  = "DELETE FROM user WHERE id = " + id;
+			return stmt.executeUpdate(sql) > 0; // executeUpdate aktuallisiert Tabellen und Daten, liefert die Anzahl betrofferen Datensätze
 		}
 	}
 	
