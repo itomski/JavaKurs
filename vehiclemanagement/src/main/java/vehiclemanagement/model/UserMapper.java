@@ -9,32 +9,22 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserMapper {
+public class UserMapper extends AbstractMapper<User> {
+	
+	
+	// Default-Konstruktor ruft den parameterlosen Konstruktor seiner Elternklasse
+	public UserMapper() {
+		super("user"); // Aufruf des Konstruktors der Elternklasse mit einem Parameter 
+	}
+	
 	
 	// CRUD - Create Read Update Delete
-	
-	public List<User> find() throws SQLException {
-		
-		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
-			
-			String sql  = "SELECT * FROM user"; // SQL
-			ResultSet results = stmt.executeQuery(sql);
-			
-			List<User> users = new ArrayList<>();
-			
-			while(results.next()) { // next springt zu der nächsten Zeile in der Ergebnis-Menge (ResultSet)
-				users.add(create(results)); 
-			}
-			
-			return users;
-		}
-	}
 	
 	public User find(int id) throws SQLException {
 		
 		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
 			
-			String sql  = "SELECT * FROM user WHERE id = " + id;
+			String sql  = "SELECT * FROM " + TABLE + " WHERE id = " + id;
 			ResultSet results = stmt.executeQuery(sql); // executeQuery ist nur für SELECT nutzbar
 			
 			if(results.next()) {
@@ -45,22 +35,10 @@ public class UserMapper {
 		}
 	}
 	
-	public boolean save(User u) throws SQLException {
-		
-		if(u.getId() > 0) {
-			// User ist bereits in der DB gespeichert
-			return update(u);
-		}
-		else {
-			// User ist noch nicht in der DB gespeichert
-			return insert(u);
-		}
-	}
-	
-	protected boolean insert(User u) throws SQLException {
+	boolean insert(User u) throws SQLException {
 		
 		// PreparedStatement: Eine SQL-Injection ist nicht mehr möglich
-		String sql  = "INSERT INTO user (firstname, lastname, birthdate) VALUES(?, ?, ?)";
+		String sql  = "INSERT INTO " + TABLE + " (firstname, lastname, birthdate) VALUES(?, ?, ?)";
 		
 		// RETURN_GENERATED_KEYS sagt, dass wir die ids, die in der Datenbank vergeben werden, später haben wollen
 		try(Connection dbh = DBHelper.getConnection(); PreparedStatement stmt = dbh.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -84,12 +62,12 @@ public class UserMapper {
 		}
 	}
 	
-	protected boolean update(User u) throws SQLException {
+	boolean update(User u) throws SQLException {
 		
 		// PreparedStatment ist wie eine Schablone, die an die DB gegeben wird und später
 		// konkrete Werte an die mit Platzhaltern markierten Stellen einsetzt
 		// Werte werden dabei NIE als SQL-Befehle ausgeführt!
-		String sql  = "UPDATE user SET firstname = ?, lastname = ?, birthdate = ? WHERE id = ?";
+		String sql  = "UPDATE " + TABLE + " SET firstname = ?, lastname = ?, birthdate = ? WHERE id = ?";
 		
 		try(Connection dbh = DBHelper.getConnection(); PreparedStatement stmt = dbh.prepareStatement(sql)) {
 			
@@ -118,7 +96,7 @@ public class UserMapper {
 		
 		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
 			
-			String sql  = "DELETE FROM user WHERE id = " + id;
+			String sql  = "DELETE FROM " + TABLE + " WHERE id = " + id;
 			return stmt.executeUpdate(sql) > 0; // executeUpdate aktuallisiert Tabellen und Daten, liefert die Anzahl betrofferen Datensätze
 		}
 	}

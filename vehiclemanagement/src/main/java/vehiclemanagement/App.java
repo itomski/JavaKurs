@@ -3,8 +3,11 @@ package vehiclemanagement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import vehiclemanagement.model.Mapper;
 import vehiclemanagement.model.User;
 import vehiclemanagement.model.UserMapper;
+import vehiclemanagement.model.Vehicle;
+import vehiclemanagement.model.VehicleMapper;
 
 public class App {
 
@@ -12,7 +15,7 @@ public class App {
 	public static void main(String[] args) {
 		
 		try { 
-			UserMapper mapper = new UserMapper();
+			Mapper<User> mapper = new UserMapper();
 			
 			// find all
 //			for(User u : mapper.find()) {
@@ -38,23 +41,36 @@ public class App {
 //			}
 			
 			// Neuer User - noch nicht in der DB
-			User u = new User();
-			u.setFirstname("Peter");
-			u.setLastname("Petersen");
-			u.setBirthDate(LocalDate.of(1950, 01, 10));
+//			User u = new User();
+//			u.setFirstname("Peter");
+//			u.setLastname("Petersen");
+//			u.setBirthDate(LocalDate.of(1950, 01, 10));
+//			
+//			// INSERT
+//			System.out.println("ID vor dem Speichern: " + u.getId());
+//			mapper.save(u);
+//			System.out.println("ID nach dem Speichern: " + u.getId());
+//			
+////			User u = mapper.find(4);
+//			u.setFirstname("Bob");
+//			
+//			// UPDATE
+//			if(mapper.save(u)) {
+//				System.out.println("Datensatz wurde geändert!");
+//			}
 			
-			// INSERT
-			System.out.println("ID vor dem Speichern: " + u.getId());
-			mapper.save(u);
-			System.out.println("ID nach dem Speichern: " + u.getId());
 			
-//			User u = mapper.find(4);
-			u.setFirstname("Bob");
+			Mapper<Vehicle> vMapper = new VehicleMapper();
+//			Vehicle v = vMapper.find(1);
+//			System.out.println(v.getNrPlate() + ", " + v.getBrand());
 			
-			// UPDATE
-			if(mapper.save(u)) {
-				System.out.println("Datensatz wurde geändert!");
+			for(Vehicle v : vMapper.find(1, 2)) {
+				System.out.println(v.getNrPlate() + ", " + v.getBrand());
 			}
+			
+			
+			
+			
 		}
 		catch(SQLException e) {
 			//System.out.println("Probleme mit der Datenbank!");
