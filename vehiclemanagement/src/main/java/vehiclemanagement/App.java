@@ -3,6 +3,7 @@ package vehiclemanagement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import vehiclemanagement.model.AbstractEntity;
 import vehiclemanagement.model.Mapper;
 import vehiclemanagement.model.User;
 import vehiclemanagement.model.UserMapper;
@@ -58,6 +59,9 @@ public class App {
 //			if(mapper.save(u)) {
 //				System.out.println("Datensatz wurde geändert!");
 //			}
+			
+//			AbstractEntity ae = new User();
+//			ae = new Vehicle();
 			
 			
 			Mapper<Vehicle> vMapper = new VehicleMapper();

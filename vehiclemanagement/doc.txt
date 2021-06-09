@@ -1,0 +1,22 @@
+AbstractEntity
+ - Fasst Eigenschaften zusammen, die alle Entities haben
+ - definiert einen gemeinsamen Datentyp für alle Entities, der als RawType bei Generics genutzt werden kann
+
+Konkrete Enities (User, Vehicle)
+ - Ergänzen AbstractEntity um alle benötigten Eigenschaften
+
+Mapper (Interface)
+ - Gibt die Signaturen für alle public Methoden für spätere konkrete Mapper vor
+
+AbstractMapper
+ - Implementiert die M ethoden des Mapper-Interface, die für alle konkreten Mapper gleich sind
+ - Gibt die Signaturen für insert und update für spätere konkrete Mapper vor
+
+Konkrete Mapper (UserMapper, VehicleMapper)
+ - Implementiert die noch nicht ausprogrammierten Methoden von Mapper-Interface und AbstractMapper
+ 
+DBHelper
+ - Utility-Klasse für Bereitstellung eine DB-Verbindung
+ - Enthält die Verbindungsdaten
+ 
+ model-package: Enthält das Daten-Modell
