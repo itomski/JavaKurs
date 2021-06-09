@@ -16,12 +16,12 @@ public class Vehicle extends AbstractEntity {
 	
 	private String notice;
 	
-	private String status;
+	private Status status;
 
 	public Vehicle() {
 	}
 	
-	public Vehicle(String nrPlate, String brand, String model, String type, int power, String status) {
+	public Vehicle(String nrPlate, String brand, String model, String type, int power, Status status) {
 		this.nrPlate = nrPlate;
 		this.brand = brand;
 		this.model = model;
@@ -31,7 +31,7 @@ public class Vehicle extends AbstractEntity {
 	}
 	
 	public Vehicle(int id, String nrPlate, String brand, String model, String type, int power, String color, String notice,
-			String status) {
+			Status status) {
 		this(nrPlate, brand, model, type, power, status);
 		setId(id);
 		this.color = color;
@@ -94,12 +94,15 @@ public class Vehicle extends AbstractEntity {
 		this.notice = notice;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	// TODO: Setter an vorgegebene Auswahlmöglichkeiten anpassen
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
+	}
+	
+	public void setStatus(int id) {
+		this.status = Status.getById(id);
 	}
 }

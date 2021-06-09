@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import vehiclemanagement.model.AbstractEntity;
 import vehiclemanagement.model.Mapper;
+import vehiclemanagement.model.Status;
 import vehiclemanagement.model.User;
 import vehiclemanagement.model.UserMapper;
 import vehiclemanagement.model.Vehicle;
@@ -68,8 +69,19 @@ public class App {
 //			Vehicle v = vMapper.find(1);
 //			System.out.println(v.getNrPlate() + ", " + v.getBrand());
 			
-			for(Vehicle v : vMapper.find(0, 1)) { // erste Zahl ist der Start. Anfang der Tabelle beginnt bei 0
-				System.out.println(v.getNrPlate() + ", " + v.getBrand());
+			// INSERT
+//			Vehicle v = new Vehicle("HH-XY457", "Volvo", "V70", "Kombi", 120, Status.EINSATZBEREIT);
+//			vMapper.save(v);
+			
+			
+			Vehicle v = vMapper.find(3);
+			v.setPower(200);
+			v.setColor("rot");
+			vMapper.save(v);
+			
+			// FIND
+			for(Vehicle v1 : vMapper.find(0, 10)) { // erste Zahl ist der Start. Anfang der Tabelle beginnt bei 0
+				System.out.println(v1.getNrPlate() + ", " + v1.getBrand() + ", " + v1.getStatus());
 			}
 			
 			

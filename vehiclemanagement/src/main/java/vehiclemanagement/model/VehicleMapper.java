@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
 // AbstractMapper implementiert das Interface Mapper
 // Beim erben von AbstractMapper wird automatisch aus das Interface geerbt
@@ -26,7 +25,7 @@ public class VehicleMapper extends AbstractMapper<Vehicle> {
 		v.setPower(rs.getInt("power"));
 		v.setColor(rs.getString("color"));
 		v.setNotice(rs.getString("notice"));
-		v.setStatus(rs.getString("status"));
+		v.setStatus(rs.getInt("status"));
 		return v;
 	}
 
@@ -43,13 +42,13 @@ public class VehicleMapper extends AbstractMapper<Vehicle> {
 			// Zahl ist die Nummer des Fragezeichens
 			// Platzhalter werden mit konkreten Daten ersetzt
 			stmt.setString(1, u.getNrPlate());
-			stmt.setString(1, u.getBrand());
-			stmt.setString(1, u.getModel());
-			stmt.setString(1, u.getType());
-			stmt.setInt(1, u.getPower());
-			stmt.setString(1, u.getColor());
-			stmt.setString(1, u.getNotice());
-			//stmt.setInt(1, u.getStatus()); // TODO: An int anpassen
+			stmt.setString(2, u.getBrand());
+			stmt.setString(3, u.getModel());
+			stmt.setString(4, u.getType());
+			stmt.setInt(5, u.getPower());
+			stmt.setString(6, u.getColor());
+			stmt.setString(7, u.getNotice());
+			stmt.setInt(8, u.getStatus().getId());
 			stmt.execute(); // Die Anfrage mit aktuellen Daten wird ausgeführt
 			
 			if(stmt.getUpdateCount() > 0) {
@@ -65,9 +64,27 @@ public class VehicleMapper extends AbstractMapper<Vehicle> {
 	}
 
 	@Override
-	boolean update(Vehicle u) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	boolean update(Vehicle v) throws SQLException {
+		
+		String sql  = "UPDATE " + TABLE + " SET nr_plate = ?, brand = ?, model = ?, type = ?, power = ?, color = ?, notice = ?, status = ? "
+						+ " WHERE id = ?";
+		
+		try(Connection dbh = DBHelper.getConnection(); PreparedStatement stmt = dbh.prepareStatement(sql)) {
+			
+			stmt.setString(1, v.getNrPlate());
+			stmt.setString(2, v.getBrand());
+			stmt.setString(3, v.getModel());
+			stmt.setString(4, v.getType());
+			stmt.setInt(5, v.getPower());
+			stmt.setString(6, v.getColor());
+			stmt.setString(7, v.getNotice());
+			stmt.setInt(8, v.getStatus().getId());
+			stmt.setInt(9, v.getId());
+			stmt.execute();
+			
+			return stmt.getUpdateCount() > 0;
+		}
+		
 	}
 
 }
