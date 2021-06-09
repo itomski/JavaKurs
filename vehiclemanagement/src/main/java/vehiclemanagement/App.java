@@ -64,7 +64,7 @@ public class App {
 //			Vehicle v = vMapper.find(1);
 //			System.out.println(v.getNrPlate() + ", " + v.getBrand());
 			
-			for(Vehicle v : vMapper.find(1, 2)) {
+			for(Vehicle v : vMapper.find(0, 1)) { // erste Zahl ist der Start. Anfang der Tabelle beginnt bei 0
 				System.out.println(v.getNrPlate() + ", " + v.getBrand());
 			}
 			

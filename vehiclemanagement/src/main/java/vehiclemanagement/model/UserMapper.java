@@ -16,24 +16,8 @@ public class UserMapper extends AbstractMapper<User> {
 	public UserMapper() {
 		super("user"); // Aufruf des Konstruktors der Elternklasse mit einem Parameter 
 	}
-	
-	
-	// CRUD - Create Read Update Delete
-	
-	public User find(int id) throws SQLException {
 		
-		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
-			
-			String sql  = "SELECT * FROM " + TABLE + " WHERE id = " + id;
-			ResultSet results = stmt.executeQuery(sql); // executeQuery ist nur für SELECT nutzbar
-			
-			if(results.next()) {
-				return create(results); 
-			}
-			
-			return null;
-		}
-	}
+	// CRUD - Create Read Update Delete
 	
 	boolean insert(User u) throws SQLException {
 		
@@ -80,25 +64,6 @@ public class UserMapper extends AbstractMapper<User> {
 			return stmt.getUpdateCount() > 0;
 		}
 		
-	}
-	
-	// Löscht einen Datensatz, verlangt ein User-Objekt als Attribut
-	public boolean delete(User u) throws SQLException {
-		if(delete(u.getId())) {
-			u.setId(0);
-			return true;
-		}
-		return false;
-	}
-	
-	// Löscht einen Datensatz, verlangt nur die User-ID als Attribut
-	public boolean delete(int id) throws SQLException {
-		
-		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
-			
-			String sql  = "DELETE FROM " + TABLE + " WHERE id = " + id;
-			return stmt.executeUpdate(sql) > 0; // executeUpdate aktuallisiert Tabellen und Daten, liefert die Anzahl betrofferen Datensätze
-		}
 	}
 	
 	public User create(ResultSet rs) throws SQLException {

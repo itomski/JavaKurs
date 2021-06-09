@@ -32,6 +32,10 @@ public abstract class AbstractMapper<T extends AbstractEntity> implements Mapper
 		}
 	}
 	
+	/**
+	 * @param start Wo soll begonnen werden. Anfang der Tabelle beginnt bei 0
+	 * @param num Anzahl der gewünschten Datensätze
+	 */
 	public List<T> find(int start, int num) throws SQLException {
 		
 		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
@@ -39,25 +43,44 @@ public abstract class AbstractMapper<T extends AbstractEntity> implements Mapper
 			String sql  = "SELECT * FROM " + TABLE + " LIMIT " + start + ", " + num;
 			ResultSet results = stmt.executeQuery(sql);
 			
-			List<T> users = new ArrayList<>();
+			List<T> objs = new ArrayList<>();
 			
 			while(results.next()) { // next springt zu der nächsten Zeile in der Ergebnis-Menge (ResultSet)
-				users.add(create(results)); 
+				objs.add(create(results)); 
 			}
 			
-			return users;
+			return objs;
 		}
 	}
 	
-	public boolean save(T u) throws SQLException {
+	public boolean save(T t) throws SQLException {
 			
-		if(u.getId() > 0) {
+		if(t.getId() > 0) {
 			// User ist bereits in der DB gespeichert
-			return update(u);
+			return update(t);
 		}
 		else {
 			// User ist noch nicht in der DB gespeichert
-			return insert(u);
+			return insert(t);
+		}
+	}
+	
+	// Löscht einen Datensatz, verlangt ein User-Objekt als Attribut
+	public boolean delete(T t) throws SQLException {
+		if(delete(t.getId())) {
+			t.setId(0);
+			return true;
+		}
+		return false;
+	}
+		
+	// Löscht einen Datensatz, verlangt nur die User-ID als Attribut
+	public boolean delete(int id) throws SQLException {
+		
+		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
+			
+			String sql  = "DELETE FROM " + TABLE + " WHERE id = " + id;
+			return stmt.executeUpdate(sql) > 0; // executeUpdate aktuallisiert Tabellen und Daten, liefert die Anzahl betrofferen Datensätze
 		}
 	}
 	
