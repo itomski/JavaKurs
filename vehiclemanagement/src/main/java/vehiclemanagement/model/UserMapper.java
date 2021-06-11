@@ -100,6 +100,14 @@ public class UserMapper extends AbstractMapper<User> {
 		}
 	}
 	
+	public List<User> findByFirstname(String firstname) throws SQLException {
+		return findBy("firstname", firstname);
+	}
+	
+	public List<User> findByLastname(String lastname) throws SQLException {
+		return findBy("lastname",lastname);
+	}
+	
 	public User create(ResultSet rs) throws SQLException {
 		LocalDate birthDate = LocalDate.parse(rs.getString("birthdate"));
 		// Relationale Daten (Tabellen-Daten) in Objekte umwandeln

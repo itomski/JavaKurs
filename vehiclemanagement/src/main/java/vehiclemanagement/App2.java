@@ -15,15 +15,37 @@ public class App2 {
 		try {
 			
 			Mapper<User> uMapper = new UserMapper();
-			Mapper<Vehicle> vMapper = new VehicleMapper();
+			VehicleMapper vMapper = new VehicleMapper();
 			
-			User u = uMapper.find(6);
-			Vehicle v = vMapper.find(3);
-			u.addVehicle(v);
+			User u = uMapper.find(5);
 			
-			if(uMapper.save(u)) {
-				System.out.println("Update war erfolgreich.");
+//			for(Vehicle v : vMapper.findByUser(u)) {
+//				System.out.println(v.getNrPlate());
+//			}
+			
+			for(Vehicle v : u.getVehicles()) {
+				System.out.println(v.getNrPlate());
 			}
+			
+			// Keine neue Anfrage an die DB
+			for(Vehicle v : u.getVehicles()) {
+				System.out.println(v.getNrPlate());
+			}
+			
+			
+//			Vehicle v1 = vMapper.find(3);
+//			Vehicle v2 = vMapper.find(3);
+//			u.addVehicle(v1);
+//			u.addVehicle(v2);
+			
+//			for(Vehicle v : u.getVehicles()) {
+//				System.out.println(v.getNrPlate());
+//			}
+			
+//			
+//			if(uMapper.save(u)) {
+//				System.out.println("Update war erfolgreich.");
+//			}
 			
 			
 		}

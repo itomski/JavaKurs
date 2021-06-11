@@ -1,8 +1,8 @@
 package vehiclemanagement.model;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class User extends AbstractEntity {
 	
@@ -10,7 +10,7 @@ public class User extends AbstractEntity {
 	private String lastname;
 	private LocalDate birthDate;
 	
-	private List<Vehicle> vehicles = new ArrayList<>();
+	private Set<Vehicle> vehicles = null;
 	
 	public User() {
 	}
@@ -43,11 +43,26 @@ public class User extends AbstractEntity {
 		this.birthDate = birthDate;
 	}
 	
-	public List<Vehicle> getVehicles() {
+	// Lazy - Daten werden nur bei ausführung dieser Methode geholt
+	// wird diese Methode nicht ausgeführt, dann bleibt vehicles mit null belegt;
+	public Set<Vehicle> getVehicles() throws SQLException {
+		if(vehicles == null) {
+			//TODO: Falls diese Methode aufgerufen wird, und eine null drin  ist,
+			// Dann heißt es, dass es noch nicht die zugeordneten Vehicle-Objekte aus der DB zeigt
+			vehicles = new VehicleMapper().findByUser(this);
+			
+		}
 		return vehicles;
 	}
 
 	public void addVehicle(Vehicle vehicle) {
 		this.vehicles.add(vehicle);
+	}
+	
+	public void removeVehicle(Vehicle vehicle) {
+		this.vehicles.remove(vehicle);
+		// TODO: die Verbindung aus aus der DB entfernen
+		// TODO: Um ständige Lese- und Schreib-Zugriffe auf die DB zu reduzieren sollte ein Flag verwendet werden,
+		// der uns eine Info gibt, ob der aktuelle Zustand des Sets mit der DB synchronisiert wurde
 	}
 }

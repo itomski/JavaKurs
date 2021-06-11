@@ -5,6 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 // AbstractMapper implementiert das Interface Mapper
 // Beim erben von AbstractMapper wird automatisch aus das Interface geerbt
@@ -29,6 +34,29 @@ public class VehicleMapper extends AbstractMapper<Vehicle> {
 		return v;
 	}
 
+	public Set<Vehicle> findByUser(User u) throws SQLException {
+		
+		String sql = "SELECT v.* FROM vehicles v, user_to_vehicles uv WHERE v.id = uv.vehicle AND uv.user = ?";
+		
+		// executeSelect liefert eine List gebraucht wird aber ein Set
+		return new LinkedHashSet<>(executeSelect(sql, Arrays.asList(u.getId())));
+		
+//		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
+//			
+//			String sql = "SELECT v.* FROM vehicles v, user_to_vehicles uv WHERE v.id = uv.vehicle AND uv.user = " + u.getId();
+//			
+//			ResultSet results = stmt.executeQuery(sql);
+//			
+//			Set<Vehicle> objs = new LinkedHashSet<>();
+//			
+//			while(results.next()) {
+//				objs.add(create(results)); 
+//			}
+//			
+//			return objs;
+//		}
+	}
+	
 	@Override
 	boolean insert(Vehicle u) throws SQLException {
 		
