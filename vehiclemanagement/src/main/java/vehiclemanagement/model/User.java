@@ -1,12 +1,16 @@
 package vehiclemanagement.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User extends AbstractEntity {
 	
 	private String firstname;
 	private String lastname;
 	private LocalDate birthDate;
+	
+	private List<Vehicle> vehicles = new ArrayList<>();
 	
 	public User() {
 	}
@@ -37,5 +41,13 @@ public class User extends AbstractEntity {
 	}
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
+	}
+	
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+	public void addVehicle(Vehicle vehicle) {
+		this.vehicles.add(vehicle);
 	}
 }

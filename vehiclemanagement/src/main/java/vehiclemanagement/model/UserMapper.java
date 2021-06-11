@@ -48,22 +48,56 @@ public class UserMapper extends AbstractMapper<User> {
 	
 	boolean update(User u) throws SQLException {
 		
-		// PreparedStatment ist wie eine Schablone, die an die DB gegeben wird und später
-		// konkrete Werte an die mit Platzhaltern markierten Stellen einsetzt
-		// Werte werden dabei NIE als SQL-Befehle ausgeführt!
-		String sql  = "UPDATE " + TABLE + " SET firstname = ?, lastname = ?, birthdate = ? WHERE id = ?";
+		try(Connection dbh = DBHelper.getConnection()) {
 		
-		try(Connection dbh = DBHelper.getConnection(); PreparedStatement stmt = dbh.prepareStatement(sql)) {
+			boolean block1 = false;
+			boolean block2 = false;
 			
-			stmt.setString(1, u.getFirstname());
-			stmt.setString(2, u.getLastname());
-			stmt.setString(3, u.getBirthDate().toString());
-			stmt.setInt(4, u.getId());
-			stmt.execute();
+			// PreparedStatment ist wie eine Schablone, die an die DB gegeben wird und später
+			// konkrete Werte an die mit Platzhaltern markierten Stellen einsetzt
+			// Werte werden dabei NIE als SQL-Befehle ausgeführt!
+			String sql  = "UPDATE " + TABLE + " SET firstname = ?, lastname = ?, birthdate = ? WHERE id = ?";
 			
-			return stmt.getUpdateCount() > 0;
+			try(PreparedStatement stmt = dbh.prepareStatement(sql)) {
+				
+				stmt.setString(1, u.getFirstname());
+				stmt.setString(2, u.getLastname());
+				stmt.setString(3, u.getBirthDate().toString());
+				stmt.setInt(4, u.getId());
+				stmt.execute();
+				
+				block1 = stmt.getUpdateCount() > 0;
+			}
+			
+			// TODO: In eine eigene Methode auslagern 
+			if(u.getVehicles().size() > 0) {
+				sql = "INSERT INTO user_to_vehicles (user, vehicle) VALUES(?, ?)";
+				
+				try(PreparedStatement stmt = dbh.prepareStatement(sql)) {
+					// Prepared Statement wird als Schablone 1x an die DB übergeben
+					// und kann beim execute jeweils mit neuen Werten belegt werden
+					
+					for(Vehicle v : u.getVehicles()) {
+						// Die Platzhalter in der Schablone werden mit aktuellen Werten gefüllt
+						stmt.setInt(1, u.getId());
+						stmt.setInt(2, v.getId());
+						stmt.execute();
+					}
+					block2 = true;
+				}
+				catch(SQLException e) {
+					block2 = false;
+				}
+			}
+			else {
+				// Wenn keine Fahrzeuge für den User hinterlegt sind, dann gibt das Update der
+				// Userdaten ein return
+				return block1;
+			}
+			// Wenn Fahrzeuge für den User hinterlegt sind, dann gibt das Update der
+			// Userdaten UND Update der Verbindung ein return
+			return block1 && block2;
 		}
-		
 	}
 	
 	public User create(ResultSet rs) throws SQLException {
