@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 // Abstrakte Klassen müssen die Methoden eines Interface nicht einbauen, können aber
@@ -21,10 +22,16 @@ public abstract class AbstractMapper<T extends AbstractEntity> implements Mapper
 	
 	@Override
 	// Liefert einen Datensatz als Objekt
-	public T find(int id) throws SQLException {
+	public Optional<T> find(int id) throws SQLException {
 		
 		String sql  = "SELECT * FROM " + TABLE + " WHERE id = ?";
-		return executeSelect(sql, Arrays.asList(id)).get(0);
+		
+		List<T> list = executeSelect(sql, Arrays.asList(id));
+		
+		if(list.size() > 0) {
+			return Optional.of(list.get(0));
+		}
+		return Optional.empty();
 		
 //		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
 //			

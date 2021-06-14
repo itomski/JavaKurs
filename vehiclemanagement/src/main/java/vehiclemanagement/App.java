@@ -2,6 +2,7 @@ package vehiclemanagement;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import vehiclemanagement.model.AbstractEntity;
 import vehiclemanagement.model.Mapper;
@@ -74,19 +75,18 @@ public class App {
 //			vMapper.save(v);
 			
 			
-			Vehicle v = vMapper.find(3);
-			v.setPower(200);
-			v.setColor("rot");
-			vMapper.save(v);
+			Optional<Vehicle> vo = vMapper.find(3);
+			if(vo.isPresent()) {
+				Vehicle v = vo.get();
+				v.setPower(200);
+				v.setColor("rot");
+				vMapper.save(v);
+			}
 			
 			// FIND
 			for(Vehicle v1 : vMapper.find(0, 10)) { // erste Zahl ist der Start. Anfang der Tabelle beginnt bei 0
 				System.out.println(v1.getNrPlate() + ", " + v1.getBrand() + ", " + v1.getStatus());
 			}
-			
-			
-			
-			
 		}
 		catch(SQLException e) {
 			//System.out.println("Probleme mit der Datenbank!");

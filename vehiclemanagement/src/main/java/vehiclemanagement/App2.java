@@ -1,6 +1,7 @@
 package vehiclemanagement;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 import vehiclemanagement.model.Mapper;
 import vehiclemanagement.model.User;
@@ -17,7 +18,8 @@ public class App2 {
 			Mapper<User> uMapper = new UserMapper();
 			VehicleMapper vMapper = new VehicleMapper();
 			
-			User u = uMapper.find(5);
+			Optional<User> ou = uMapper.find(5);
+			User u = ou.get();
 			
 //			for(Vehicle v : vMapper.findByUser(u)) {
 //				System.out.println(v.getNrPlate());
