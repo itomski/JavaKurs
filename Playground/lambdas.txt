@@ -1,3 +1,9 @@
+1. Merke dir die besonderheit der Grundtypen: Supplier, Consumer, Predicate, Function/Operator
+
+2. Variationen: Bi und Binary - zwei Eingangswerte
+
+3. Alles was Int, Long oder Double im Namen hat, arbeitet mit primitiven
+
 Supplier<T> - Erzeugt werte: T get()
 	// erzeugen primitive Werte
 	IntSupplier: int getAsInt(), 
@@ -12,8 +18,32 @@ Consumer<T> - Verbraucht komplexe werte: void accept(T t)
 	
 	BiConsumer<T, U>: void accept(T t, U u) // werbraucht zwei Werte
 	
+	// der generiche Typ ist das Obj, Int ist int
+	ObjIntConsumer<T>: void accept(T t, int i)
 
-Function
+Function<T, R> - Beschreibt eine Veränderung eines komplexen Wertes: R apply(T t) 
+	// Beschreibt eine Veränderung eines primitiven Wertes
+	IntFunction<R>: R apply(int i)
+	DoubleFunction<R>: R apply(double d)
+	LongFunction<R>: R apply(long l)
+	
+	DoubleUnaryOperator: double applyAsDouble(double d) // Auch für int und long
+	
+	DoubleBinaryOperator: double applyAsDoubke(double d1, double d2) // Auch für int und long
+
+	// Beschreibt eine Veränderung zweier komplexer Werte
+	BiFunction<T,U,R>: R apply(T t, U u)
+	
+	// Funktion mit gleichem Eingangs und Rückgabe-Typ
+	UnaryOperator<T>: T apply(T t)
+	
+	// Funktion mit gleichem Eingangs und Rückgabe-Typ mit zwei Eingangsparametern
+	BinaryOperator<T>: T apply(T t1, T t2)
+	
+	IntToDoubleFunction: double applyAsDouble(int i)
+	IntToLongFunction: long applyAsLong(int i)
+	LongToIntFunction: int applyAsInt(long l)
+	//etc. umwandlung von primitiv zu primitiv
 
 Predicate<T> - prüft komplexe Werte: boolean test(T t),
 	// prüft primitive Werte

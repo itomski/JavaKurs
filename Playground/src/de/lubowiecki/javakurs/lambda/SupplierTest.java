@@ -72,6 +72,10 @@ public class SupplierTest {
 }
 
 class User {
+	@Override
+	public String toString() {
+		return "User [firstname=" + firstname + ", lastname=" + lastname + "]";
+	}
 	private String firstname;
 	private String lastname;
 	
@@ -95,4 +99,6 @@ class User {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+	
+	
 }
