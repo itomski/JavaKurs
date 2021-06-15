@@ -1,0 +1,26 @@
+Supplier<T> - Erzeugt werte: T get()
+	// erzeugen primitive Werte
+	IntSupplier: int getAsInt(), 
+	DoubleSupplier: double getAsDouble(), 
+	LongSupplier: long getAsLong()
+		
+Consumer<T> - Verbraucht komplexe werte: void accept(T t)
+	// verbrauchen primitive Werte 
+	IntConsumer: void accept(int i)
+	DoubleConsumer: void accept(double d)
+	LongConsumer: void accept(long l)
+	
+	BiConsumer<T, U>: void accept(T t, U u) // werbraucht zwei Werte
+	
+
+Function
+
+Predicate<T> - prüft komplexe Werte: boolean test(T t),
+	// prüft primitive Werte
+	IntPredicate: boolean test(int i), 
+	DoublePredicate: boolean test(double d), 
+	LongPredicate: boolean test(long l)
+	
+	BiPredicate<T, U>: boolean test(T t, U u) // zwei Werte werden geprüft
+
+
