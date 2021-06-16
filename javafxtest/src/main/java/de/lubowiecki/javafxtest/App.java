@@ -26,8 +26,8 @@ public class App extends Application {
     	
     	scene = new Scene(loadFXML("primary"));
     	
-    	System.out.println(((AnchorPane)scene.getRoot()).getPrefHeight());
-    	System.out.println(((AnchorPane)scene.getRoot()).getPrefWidth());
+//    	System.out.println(((AnchorPane)scene.getRoot()).getPrefHeight());
+//    	System.out.println(((AnchorPane)scene.getRoot()).getPrefWidth());
     	
     	stage.setScene(scene);
         stage.show();
