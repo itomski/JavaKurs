@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 // Abstrakte Klassen müssen die Methoden eines Interface nicht einbauen, können aber
 public abstract class AbstractMapper<T extends AbstractEntity> implements Mapper<T> {
@@ -86,6 +85,13 @@ public abstract class AbstractMapper<T extends AbstractEntity> implements Mapper
 			}
 			
 			return objs;
+		}
+	}
+	
+	boolean execute(String sql) throws SQLException {
+		try(Connection dbh = DBHelper.getConnection(); Statement stmt = dbh.createStatement()) {
+			stmt.execute(sql);
+			return stmt.getUpdateCount() > 0;
 		}
 	}
 	

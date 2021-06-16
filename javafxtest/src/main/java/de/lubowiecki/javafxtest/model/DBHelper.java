@@ -27,7 +27,12 @@ public class DBHelper {
 	}
 	
 	public static Connection getConnection() throws SQLException {
-		createParentFolder();
+		try {
+			createParentFolder();
+		}
+		catch(IOException e) {
+			throw new SQLException("Ordner für die Datenbank konnte nicht angelegt werden");
+		}
 		return DriverManager.getConnection(URI);			
 	}
 }
