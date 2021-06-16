@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import de.lubowiecki.javafxtest.model.Item;
 import de.lubowiecki.javafxtest.model.ItemMapper;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
@@ -58,20 +59,13 @@ public class PrimaryController implements Initializable {
     private void refreshOutput() {
     	StringBuilder sb = new StringBuilder();
     	try {
-	    	List<Item> items = mapper.find(0, 20);
-	    	for(Item item : items) {
-	    		sb.append(item.getName())
-	    			.append(":")
-	    			.append(item.getCount())
-	    			.append(":")
-	    			.append(item.getCreatedAt())
-	    			.append("\n");
-	    	}
+    		// Die Tabelle wird mit Item-Objekten in form einer speziellen Liste gefüllt
+	    	tblOutput.setItems(FXCollections.observableList(mapper.find(0, 20)));
+	    	
     	}
     	catch(SQLException e) {
     		e.printStackTrace();
     	}
-    	//txtOutput.setText(sb.toString());
     }
 
 	@Override

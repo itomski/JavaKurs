@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -19,9 +20,23 @@
       <Button defaultButton="true" layoutX="201.0" layoutY="103.0" mnemonicParsing="false" onAction="#addItem" text="Add" AnchorPane.rightAnchor="25.0" />
       <TableView fx:id="tblOutput" layoutX="25.0" layoutY="148.0" prefHeight="395.0" prefWidth="220.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
         <columns>
-          <TableColumn prefWidth="28.0" text="ID" />
-          <TableColumn prefWidth="128.0" text="Name" />
-            <TableColumn prefWidth="69.0" text="Anzahl" />
+          <TableColumn prefWidth="28.0" text="ID">
+          	<cellValueFactory>
+          		<PropertyValueFactory property="id" />
+          	</cellValueFactory>
+          </TableColumn>
+          
+          <TableColumn prefWidth="128.0" text="Name">
+          	<cellValueFactory>
+          		<PropertyValueFactory property="name" />
+          	</cellValueFactory>
+          </TableColumn>
+          
+          <TableColumn prefWidth="69.0" text="Anzahl">
+          	<cellValueFactory>
+          		<PropertyValueFactory property="count" />
+          	</cellValueFactory>
+          </TableColumn>
         </columns>
       </TableView>
    </children>
