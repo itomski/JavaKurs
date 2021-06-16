@@ -76,7 +76,7 @@ public abstract class AbstractMapper<T extends AbstractEntity> implements Mapper
 				stmt.setObject(i, values.get(i));
 			}
 			
-			ResultSet results = stmt.executeQuery(sql);
+			ResultSet results = stmt.executeQuery();
 			
 			List<T> objs = new ArrayList<>();
 			

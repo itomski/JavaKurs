@@ -1,6 +1,7 @@
 package de.lubowiecki.javafxtest.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Item extends AbstractEntity {
 	
@@ -40,8 +41,13 @@ public class Item extends AbstractEntity {
 		this.count = count;
 	}
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
+//	public LocalDateTime getCreatedAt() {
+//		return createdAt;
+//	}
+	
+	public String getCreatedAt() {
+		DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return createdAt.format(f);
 	}
 
 	public void setCreatedAt(LocalDateTime createdAt) {
