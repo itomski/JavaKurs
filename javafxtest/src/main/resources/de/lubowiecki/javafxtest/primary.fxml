@@ -11,28 +11,28 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="267.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.lubowiecki.javafxtest.PrimaryController">
    <children>
-      <Label layoutX="27.0" layoutY="35.0" text="Einkaufsliste" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+      <Label layoutX="27.0" layoutY="35.0" text="%title" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
       <TextField fx:id="txtInput" layoutX="24.0" layoutY="103.0" prefHeight="27.0" prefWidth="167.0" AnchorPane.leftAnchor="25.0" />
-      <Button defaultButton="true" layoutX="201.0" layoutY="103.0" mnemonicParsing="false" onAction="#addItem" text="Add" AnchorPane.rightAnchor="25.0" />
+      <Button defaultButton="true" layoutX="201.0" layoutY="103.0" mnemonicParsing="false" onAction="#addItem" text="%btn.add" AnchorPane.rightAnchor="25.0" />
       <TableView fx:id="tblOutput" layoutX="25.0" layoutY="148.0" prefHeight="395.0" prefWidth="220.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
         <columns>
-          <TableColumn prefWidth="28.0" text="ID">
+          <TableColumn prefWidth="28.0" text="%tab.id">
           	<cellValueFactory>
           		<PropertyValueFactory property="id" />
           	</cellValueFactory>
           </TableColumn>
           
-          <TableColumn prefWidth="128.0" text="Name">
+          <TableColumn prefWidth="128.0" text="%tab.name">
           	<cellValueFactory>
           		<PropertyValueFactory property="name" />
           	</cellValueFactory>
           </TableColumn>
           
-          <TableColumn prefWidth="69.0" text="Anzahl">
+          <TableColumn prefWidth="69.0" text="%tab.count">
           	<cellValueFactory>
           		<PropertyValueFactory property="count" />
           	</cellValueFactory>

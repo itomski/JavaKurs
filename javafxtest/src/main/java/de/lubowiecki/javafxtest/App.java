@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * JavaFX App
@@ -36,10 +38,21 @@ public class App extends Application {
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
+    
+    private static Locale getSystemLocale() {
+//    	Locale.setDefault(Locale.UK);
+//    	return Locale.UK;
+    	String c = System.getProperty("user.country");
+    	return new Locale(String.format("%s_%s", c.toLowerCase(), c.toUpperCase()));
+    	
+    }
 
     private static Parent loadFXML(String fxml) throws IOException {
-    	// Hier wird das ResourceBundle an die Oberfläche übergeben
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("lang.ui", getSystemLocale());
+        
+        // Hier wird das ResourceBundle an die Oberfläche übergeben
+        fxmlLoader.setResources(bundle);
         return fxmlLoader.load();
     }
 
