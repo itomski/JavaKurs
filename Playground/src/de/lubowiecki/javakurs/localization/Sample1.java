@@ -37,6 +37,8 @@ public class Sample1 {
 		System.out.println();
 		
 		// getBundle nutzt, wenn nicht anders angegeben, automatisch die Default-Sprache
+		// Bundel-Name wird inkl. paket und baseName angegeben
+		// Default-Bundle (hier: ui.properties) hat keine Spracherweiterung und Landeserweiterung im Namen
 		ResourceBundle bundle = ResourceBundle.getBundle("de.lubowiecki.javakurs.localization.ui");
 		
 		System.out.println(bundle.getString("welcome"));

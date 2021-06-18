@@ -12,7 +12,8 @@ public class ui_en extends ListResourceBundle {
 			{"welcome", "hi"},
 			{"question", "How is your name"},
 			{"thanks", "Thank you"},
-			{"answer", "Your name is"}
+			{"answer", "Your name is"},
+			{"end", "See you later..."}
 			// Fehlende Schlüssel werden aus dem default-File geladen
 		};
 	}
