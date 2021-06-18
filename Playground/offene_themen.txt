@@ -1,0 +1,10 @@
+SOLID, Software engineering
+UML
+Design Patterns
+
+Vorgehens Modelle
+
+Unit-Testig
+
+Threads
+Executor-Services, ForkJoin

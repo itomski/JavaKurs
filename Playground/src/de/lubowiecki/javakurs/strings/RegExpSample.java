@@ -65,9 +65,5 @@ public class RegExpSample {
 		
 		str = "Das ist ein Haus von Nikigraus";
 		System.out.println(str.matches(".*(Nikolaus|nikolaus|Nikigraus|nikigraus).*"));
-		
-		
-
 	}
-
 }
