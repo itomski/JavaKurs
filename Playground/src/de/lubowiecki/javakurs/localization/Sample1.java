@@ -5,8 +5,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Default;
-
 public class Sample1 {
 
 	private static final Scanner scanner = new Scanner(System.in);
