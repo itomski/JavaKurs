@@ -15,7 +15,7 @@ import vehiclemanagement.model.VehicleMapper;
 public class App {
 
 	// MVC - Model View Controller
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		
 		try { 
 			Mapper<User> mapper = new UserMapper();
