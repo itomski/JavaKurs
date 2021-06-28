@@ -2,24 +2,4 @@ SOLID, Software engineering
 UML
 Design Patterns
 
-Vorgehens Modelle
-
 Unit-Testig
-
-Threads
-Executor-Services, ForkJoin
-
-// Themen für die Baustein-Prüfung
-JDBC (Keine Mapper)
-	- Interfaces: Connection, Statement, PreparedStatement, ResultSet
-	- Einfache SQL abfragen
-Localization
-	- ResourceBundles
-	- NumberFormat
-	- DateTimeFormatter
-Streams
-	- Build-In-Functional-Interfaces
-	- Funktionsweise
-	- Intermediate-Operations
-	- Terminal-Operations
-	
