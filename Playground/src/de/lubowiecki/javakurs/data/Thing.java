@@ -2,7 +2,6 @@ package de.lubowiecki.javakurs.data;
 
 import java.io.Serializable;
 
-// JavaBean-Konvention
 public class Thing implements Serializable {
 	
 	private static final long serialVersionUID = -5308730016546897609L;
