@@ -1,5 +1,12 @@
-SOLID, Software engineering
+Software engineering
 UML
 Design Patterns
-
 Unit-Testig
+Prototyping
+
+NoSQL-Datenbanken
+Maven
+Refactoring
+
+Concurrent Collections
+Parallel Streams
