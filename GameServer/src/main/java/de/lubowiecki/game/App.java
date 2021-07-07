@@ -17,14 +17,9 @@ public class App {
 			String input = null;
 			
 			app: while(true) {
-				System.out.print("#:");
 				input = scanner.nextLine();
-				
 				if(input.equalsIgnoreCase("exit"))
 					break app;
-				
-				server.send(new Message(input, "SERVER"));
-				
 			}
 			
 			System.out.println("Server wurde beendet.");

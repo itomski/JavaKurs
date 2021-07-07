@@ -31,7 +31,7 @@ public class Server {
 					c.start();
 				}
 				catch(Exception e) {
-					System.err.println(e.getStackTrace());
+					e.printStackTrace();
 				}
 			}
 		});
@@ -46,9 +46,10 @@ public class Server {
 					
 					Message msg = messages.take();
 					System.out.println(msg);
+					send(msg);
 				}
 				catch(Exception e) {
-					System.err.println(e.getStackTrace());
+					e.printStackTrace();
 				}
 			}
 		});

@@ -47,8 +47,7 @@ public class Client {
 		private Socket socket; // Verbindung zum Server
 		
 		public Connection(Socket socket) throws IOException {
-			this.socket = socket;
-			in = new ObjectInputStream(socket.getInputStream()); 
+			this.socket = socket; 
 			out = new ObjectOutputStream(socket.getOutputStream());
 		}
 		
@@ -56,6 +55,10 @@ public class Client {
 			Thread read = new Thread(() -> {
 				while(true) {
 					try {
+						if(in == null)
+							in = new ObjectInputStream(socket.getInputStream());
+						
+					
 						Message msg = (Message)in.readObject();
 						messages.put(msg);
 					}
