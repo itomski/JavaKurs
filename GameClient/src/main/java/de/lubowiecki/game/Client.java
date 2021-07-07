@@ -3,40 +3,24 @@ package de.lubowiecki.game;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class Server {
+public class Client {
 	
-	private List<Connection> clients;
+	private Connection server;
 	private BlockingQueue<Message> messages;
-	private ServerSocket serverSocket; 
+	private Socket socket;
 	
-	public Server(int port) throws IOException {
-		clients = new ArrayList<>();
-		messages = new LinkedBlockingQueue<>();
-		serverSocket = new ServerSocket(port);
+	public Client(String host, int port) throws IOException {
 		
-		Thread accept = new Thread(() -> {
-			while(true) {
-				try {
-					Connection c = new Connection(serverSocket.accept());
-					clients.add(c);
-					c.start();
-				}
-				catch(Exception e) {
-					System.err.println(e.getStackTrace());
-				}
-			}
-		});
-		accept.setDaemon(true);
-		accept.start();
+		socket = new Socket(host, port);
+		messages = new LinkedBlockingQueue<>();
+		server = new Connection(socket);
+		server.listen();
 		
 		Thread processMessage = new Thread(() -> {
 			while(true) {
@@ -48,7 +32,7 @@ public class Server {
 					System.out.println(msg);
 				}
 				catch(Exception e) {
-					System.err.println(e.getStackTrace());
+					e.printStackTrace();
 				}
 			}
 		});
@@ -60,19 +44,19 @@ public class Server {
 		
 		private ObjectInputStream in;
 		private ObjectOutputStream out;
-		private Socket client; // Verbindung zum Client
+		private Socket socket; // Verbindung zum Server
 		
-		public Connection(Socket client) throws IOException {
-			this.client = client;
-			in = new ObjectInputStream(client.getInputStream()); 
-			out = new ObjectOutputStream(client.getOutputStream());
+		public Connection(Socket socket) throws IOException {
+			this.socket = socket;
+			in = new ObjectInputStream(socket.getInputStream()); 
+			out = new ObjectOutputStream(socket.getOutputStream());
 		}
 		
-		public void start() {
+		private void listen() {
 			Thread read = new Thread(() -> {
 				while(true) {
 					try {
-						Message msg = (Message) in.readObject(); 
+						Message msg = (Message)in.readObject();
 						messages.put(msg);
 					}
 					catch(Exception e) {
@@ -88,16 +72,13 @@ public class Server {
 			try {
 				out.writeObject(msg);
 			} catch (IOException e) {
+				// TODO: Exception anders weitergeben
 				e.printStackTrace();
 			}
 		}
 	}
 	
-	public void send(Message msg, int to) { // send to one
-		clients.get(to).write(msg);
-	}
-	
 	public void send(Message msg) { // send to all
-		clients.forEach(c -> c.write(msg));
+		server.write(msg);
 	}
 }
