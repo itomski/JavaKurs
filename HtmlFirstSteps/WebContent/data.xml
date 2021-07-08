@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XHTML ist der Vergänger von HTML5 -->
+
+<!-- XML -->
+<books>
+	<book isbn="1235">
+		<title>Kochen ohne Fett</title>
+		<price>11.99</price>
+	</book>
+	<book isbn="1235">
+		<title>Kochen mit Fett</title>
+		<price>11.99</price>
+	</book>
+</books>

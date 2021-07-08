@@ -1,0 +1,14 @@
+{
+	"books": [
+		{
+			"isbn": "1234-567",
+			"title": "Kochen ohne Fett",
+			"price": "11.99"
+		},
+		{
+			"isbn": "1234-568",
+			"title": "Kochen mit Fett",
+			"price": "11.99"
+		}
+	]
+}
