@@ -12,7 +12,6 @@
 	2. Können jede beliebige Größe bekommen, unabhängig vom Inhalt 
 -->
 
-
 <!-- Jedes HTML-Dokument beginnt mit einem html-Tag -->
 <html lang="de">
 	<!-- head: hier kommen die Meta-Informationen zum Dokument -->
@@ -23,6 +22,7 @@
 		<!-- viewport: Dokument wird auf Mobilen-Geräten nicht skaliert -->
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 		
+		<!-- Die CSS-Datei  wird angebunden, die für die Formatierung des HTMLs verwendet werden soll -->
 		<link rel="stylesheet" href="css/basic.css" media="all" />
 	</head>
 	
@@ -33,7 +33,7 @@
 		
 		<header>
 			<!-- Sichtbarer Kopfbereich der Seite -->
-			<h1>Home</h1>
+			<h1 class="red-text">Home</h1>
 		</header>
 		
 		<nav>
@@ -52,17 +52,26 @@
 		
 		<main>
 			<!-- Hauptinhalt -->
-			<h2>Kochen ohne Fett</h2>
+			<h2 class="yellow-text">Kochen ohne Fett</h2>
 			<!-- p = Absatz -->
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aliquid officiis ad velit aliquam laboriosam eligendi perferendis quasi eum omnis placeat culpa delectus unde autem facilis minima nihil corporis nesciunt. Molestiae dolor similique adipisci aut officia quibusdam ex rem odio id iure magni amet omnis recusandae laboriosam nisi accusantium exercitationem fuga saepe suscipit dolorem unde enim sint totam laudantium earum perferendis voluptate reprehenderit nulla est tenetur quisquam veniam architecto aliquid ad laborum vitae et! Totam ipsa nam adipisci fuga incidunt quod culpa. Ad nesciunt molestiae maiores sunt impedit voluptatibus explicabo! Nihil doloribus cum molestiae harum facere consequatur totam quaerat libero magni error dolor rerum quos ratione voluptatibus natus deleniti ipsa molestias ex voluptatem vero! Rem sit rerum animi iure ea id perspiciatis iste corporis aperiam labore reiciendis veniam hic. Nihil odit necessitatibus consequatur aspernatur ratione eius amet a. Placeat quo sit aspernatur eos sint optio distinctio minima a dolor consectetur magni repellendus voluptatibus illum laudantium fugit impedit laboriosam quis dicta sunt ut quas esse facere. Perferendis eaque voluptates cupiditate totam illo obcaecati explicabo deleniti corporis necessitatibus repellendus et culpa fuga vel tenetur soluta aliquam fugit. Ratione delectus quaerat quisquam distinctio inventore maiores temporibus tenetur accusamus ipsum perferendis cum vitae ullam.</p>
 		</main>
 		
 		<aside>
-			<!-- Nebeninhalt -->
+			<p class="yellow-text">Lorem ipsum dolor sit amet, <strong class="red-text">consectetur adipisicing elit</strong>. Quae cupiditate eius ratione ab maxime consequuntur error laboriosam vitae ipsa quas accusantium mollitia recusandae. Ducimus necessitatibus consequuntur incidunt aliquid architecto consequatur <strong>magni voluptas aut eos ad ratione hic</strong> explicabo quae nihil dolor dolores ullam odit nam quo itaque? Nesciunt molestias eligendi maiores tempora voluptas asperiores accusantium soluta natus veniam at facere assumenda dolore ratione quidem laborum ea fugiat adipisci sed odio voluptate sint esse recusandae reprehenderit accusamus illo quam quo. Excepturi repellat magni quasi dolorum commodi provident distinctio accusamus ducimus explicabo a fuga autem ab nam similique quod quam perferendis atque alias cupiditate soluta dignissimos qui laudantium iusto in delectus neque eaque cum esse assumenda odio earum temporibus consequuntur vero corporis velit enim quaerat iure sunt aperiam obcaecati voluptatum incidunt laboriosam eius veniam dicta aut. Inventore ullam quos maxime dolor quis natus suscipit velit non incidunt consectetur quas debitis ad harum dolorem possimus quidem recusandae odio aut molestiae illum numquam sit repudiandae saepe nisi facilis! Illo laboriosam repellat possimus magnam in natus nihil officia est vero eos ad tenetur maxime optio nostrum cupiditate expedita accusamus sit ipsum repudiandae odit reiciendis quo dolores quod animi eveniet placeat consectetur ab veniam voluptates. Atque!</p>
 		</aside>
+		
+		<!-- div = Container ohne bestimmte logische Bedeutung -->
+		<!-- id = Ermöglicht eine einzigartige Formatierung -->
+		<div id="sub-asside">
+			<p>Lorem ipsum dolor sit amet, <strong class="red-text">consectetur adipisicing elit</strong>. Quae cupiditate eius ratione ab maxime consequuntur error laboriosam vitae ipsa quas accusantium mollitia recusandae. Ducimus necessitatibus consequuntur incidunt aliquid architecto consequatur <strong>magni voluptas aut eos ad ratione hic</strong> explicabo quae nihil dolor dolores ullam odit nam quo itaque? Nesciunt molestias eligendi maiores tempora voluptas asperiores accusantium soluta natus veniam at facere assumenda dolore ratione quidem laborum ea fugiat adipisci sed odio voluptate sint esse recusandae reprehenderit accusamus illo quam quo. Excepturi repellat magni quasi dolorum commodi provident distinctio accusamus ducimus explicabo a fuga autem ab nam similique quod quam perferendis atque alias cupiditate soluta dignissimos qui laudantium iusto in delectus neque eaque cum esse assumenda odio earum temporibus consequuntur vero corporis velit enim quaerat iure sunt aperiam obcaecati voluptatum incidunt laboriosam eius veniam dicta aut. Inventore ullam quos maxime dolor quis natus suscipit velit non incidunt consectetur quas debitis ad harum dolorem possimus quidem recusandae odio aut molestiae illum numquam sit repudiandae saepe nisi facilis! Illo laboriosam repellat possimus magnam in natus nihil officia est vero eos ad tenetur maxime optio nostrum cupiditate expedita accusamus sit ipsum repudiandae odit reiciendis quo dolores quod animi eveniet placeat consectetur ab veniam voluptates. Atque!</p>
+		</div>
 		
 		<footer>
 			<!-- Service-Navigation & weitere Infos -->
+			<div>Links</div>
+			<div>Mitte</div>
+			<div>Rechts</div>
 		</footer>
 		
 	</body>

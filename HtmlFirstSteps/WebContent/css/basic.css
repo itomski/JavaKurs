@@ -40,3 +40,19 @@ nav ul {
 nav li {
 	display: inline-block;
 }
+
+/* Klasse erlaubt eine wiederverwendbare Formatierung zu erstellen */
+.red-text {
+	color: #f00; /* #ff0000 */
+}
+
+/* ID erlaubt eine einzigartige Formatierung zu erstellen d.h. diese Formatierung darf nur einem Element 
+pro Dokument zusortiert werden*/
+#sub-asside {
+	background-color: #0f0;
+}
+
+/* schränkt die verwendung von yellow-text auf p-Tags ein */
+p.yellow-text {
+	color: rgb(255, 202, 47);
+}
