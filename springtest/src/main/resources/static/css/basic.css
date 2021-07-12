@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: rgb(50,50,50);
+	/* color: #323232; */
+}
+
+/* nav, header, main, p, h1 etc. sind Block-Elemente */
+nav {
+	background-color: #F5FBF1; /* Hintergrundfarbe */
+	border: 1px solid #5B82A3; /* Rahmen */
+	/* height: 500px; */
+	padding: 15px; /* Abstand von Rand zum Inhalt */
+	/* margin: 15px; */
+	
+	/* Standard: Border und Padding werden zu der Größe dazu addiert */
+	
+	/* box-sizing: Border und Padding sind in der angegeben Größe bereis enthalten */ 
+	box-sizing: border-box;
+}
+
+/* Nur a-Elemente in einem nav-Element verändern */
+/* a ist ein Inline-Element */
+nav a {
+	color: #5B82A3;
+	text-decoration: none; /* Unterstreichung entfernen */
+}
+
+/* Verändert nur das a-Element aus einem nav, wenn man mit der Maus darüber fährt */
+nav a:hover {
+	color: #7AA5AE;
+}
+
+nav ul {
+	margin: 0; /* Abstand nach Außen zum Element davor und danach */
+	padding: 0;
+}
+
+nav li {
+	display: inline-block;
+}
+
+/* Klasse erlaubt eine wiederverwendbare Formatierung zu erstellen */
+.red-text {
+	color: #f00; /* #ff0000 */
+}
+
+/* ID erlaubt eine einzigartige Formatierung zu erstellen d.h. diese Formatierung darf nur einem Element 
+pro Dokument zusortiert werden*/
+#sub-asside {
+	background-color: #0f0;
+}
+
+/* schränkt die verwendung von yellow-text auf p-Tags ein */
+p.yellow-text {
+	color: rgb(255, 202, 47);
+}
