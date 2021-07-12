@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Fragmente</title>
+</head>
+<body>
+
+	<div th:fragment="homeTpl(title)">
+		<h1 th:text="${title}"></h1>
+	</div>
+	
+	<div th:fragment="productsTpl(produkte)">
+		<h1>Produkte</h1>
+		
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Beschreibung</th>
+				<th>Preis</th>
+			</tr>
+			<tr th:each="p : ${produkte}">
+				<td th:text="${p.name}"></td>
+				<td th:text="${p.description}"></td>
+				<td th:text="${p.price}"></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div th:fragment="serviceTpl(title)">
+		<h1 th:text="${title}"></h1>
+	</div>
+	
+	<div th:fragment="teamTpl(title)">
+		<h1 th:text="${title}"></h1>
+		<p>Die Mitglieder unseren Teams...</p>
+	</div>
+</body>
+</html>

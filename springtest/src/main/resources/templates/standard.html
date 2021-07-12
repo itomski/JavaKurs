@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Document</title>
+	<title th:text="${title}">Standard Template</title>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
@@ -15,7 +15,7 @@
 	
 	<header style="min-height: 300px; background-color: #C9CDBE;" class="py-3">
 		<div class="container">
-			<h1 class="display-1">Team</h1>
+			<h1 class="display-1" th:text="${title}">Title</h1>
 		</div>
 	</header>
 	
@@ -23,7 +23,7 @@
 		
 		<div class="container-fluid">
 		
-			<a href="index.html" class="navbar-brand">SoftExpert XXL</a>
+			<a href="/" class="navbar-brand">SoftExpert XXL</a>
 			
 			<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#main-nav">
 				<span class="navbar-toggler-icon"></span>
@@ -32,11 +32,11 @@
 			<div class="navbar-collapse collapse" id="main-nav">
 				<!-- Emmet: ul#main-nav.navbar-nav>li.nav-item*5>a.nav-link -->
 				<ul class="navbar-nav">
-					<li class="nav-item"><a href="index.html" class="nav-link"><span class="fa fa-snowflake-o fa-lg" aria-hidden="true"></span> Home</a></li>
-					<li class="nav-item"><a href="produkte.html" class="nav-link"><i class="fa fa-cubes fa-lg" aria-hidden="true"></i> Produkte</a></li>
-					<li class="nav-item"><a href="service.html" class="nav-link"><i class="fa fa-gamepad fa-lg" aria-hidden="true"></i> Service</a></li>
-					<li class="nav-item"><a href="team.html" class="nav-link active"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Team</a></li>
-					<li class="nav-item"><a href="kontakt.html" class="nav-link"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i> Kontakt</a></li>
+					<li class="nav-item"><a href="/" class="nav-link"><span class="fa fa-snowflake-o fa-lg" aria-hidden="true"></span> Home</a></li>
+					<li class="nav-item"><a href="/products" class="nav-link"><i class="fa fa-cubes fa-lg" aria-hidden="true"></i> Produkte</a></li>
+					<li class="nav-item"><a href="/services" class="nav-link"><i class="fa fa-gamepad fa-lg" aria-hidden="true"></i> Service</a></li>
+					<li class="nav-item"><a href="/team" class="nav-link"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Team</a></li>
+					<li class="nav-item"><a href="/contact" class="nav-link"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i> Kontakt</a></li>
 				</ul>
 			</div>
 		</div>
@@ -45,13 +45,32 @@
 	<main style="min-height: 1000px; background-color: #D1535E;" class="py-3">
 		<div class="container">
 			<div class="row">
-				<div class="col-md">
-					<h2>Lorem ipsum dolor.</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui repellat obcaecati voluptas atque repellendus rem quasi dolorum expedita culpa. Explicabo hic nihil a sint laborum?</p>
+				<div class="col-md" th:switch="${nav}">
+					
+					<div th:case="home"> 
+						<div th:replace="fragments.html :: homeTpl(${title})"></div>
+					</div>
+					
+					<div th:case="products"> 
+						<div th:replace="fragments.html :: productsTpl(${produkte})"></div>
+					</div>
+					
+					<div th:case="service"> 
+						<div th:replace="fragments.html :: serviceTpl(${title})"></div>
+					</div>
+					
+					<div th:case="team"> 
+						<div th:replace="fragments.html :: teamTpl(${title})"></div>
+					</div>
+					
+					<div th:case="contact"> 
+						<div th:replace="forms.html :: contactTpl(${title})"></div>
+					</div>
+					
 				</div>
 				<div class="col-md">
-					<h2>Lorem ipsum dolor.</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui repellat obcaecati voluptas atque repellendus rem quasi dolorum expedita culpa. Explicabo hic nihil a sint laborum?</p>
+					<h2 th:text="${headline2}"></h2>
+					<p th:text="${content2}"></p>
 				</div>
 			</div>
 		</div>
