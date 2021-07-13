@@ -14,6 +14,7 @@
         	<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
         	<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:data.db"/>
         	<property name="javax.persistence.schema-generation.database.action" value="none"/>
+        	<property name="hibernate.show_sql" value="false"/>
 		</properties>
         
     </persistence-unit>
