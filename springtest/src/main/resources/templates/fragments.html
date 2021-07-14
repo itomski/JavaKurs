@@ -13,16 +13,23 @@
 	<div th:fragment="productsTpl(produkte)">
 		<h1>Produkte</h1>
 		
+		<p><a href="/new" class="btn btn-success">Neues Produkt hinzufügen</a></p>
+		
 		<table class="table">
 			<tr>
 				<th>Name</th>
 				<th>Beschreibung</th>
 				<th>Preis</th>
+				<th>&nbsp;</th>
 			</tr>
 			<tr th:each="p : ${produkte}">
 				<td th:text="${p.name}"></td>
 				<td th:text="${p.description}"></td>
-				<td th:text="${p.price}"></td>
+				<td th:text="${#numbers.formatDecimal(p.price, 3, 2, 'COMMA')}"></td>
+				<td>
+					<a th:href="@{/delete/{id}(id = ${p.id})}" class="btn btn-danger">Löschen</a>
+					<a th:href="@{/edit/{id}(id = ${p.id})}" class="btn btn-warning">Bearbeiten</a>
+				</td>
 			</tr>
 		</table>
 	</div>

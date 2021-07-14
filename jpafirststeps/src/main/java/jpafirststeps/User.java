@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +15,6 @@ import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import net.bytebuddy.asm.Advice.This;
 
 @Entity
 @Table(name = "users")
@@ -33,7 +32,8 @@ public class User {
 	
 	private LocalDate birthDate;
 	
-	@OneToMany(mappedBy = "user") // mappedBy = Name der Eigenschaft im Comment, über die eine Verbindung möglich ist
+	// mappedBy = Name der Eigenschaft im Comment, über die eine Verbindung möglich ist
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL) 
 	private List<Comment> comments = new ArrayList<>();
 	
 	public Integer getId() {

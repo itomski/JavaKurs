@@ -65,7 +65,7 @@ public class Comment {
 	}
 
 	public void setUser(User user) {
-		if(!this.user.equals(user)) {
+		if(this.user == null || !this.user.equals(user)) {
 			this.user = user;
 			user.addComment(this);
 		}
@@ -73,7 +73,10 @@ public class Comment {
 	
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(this.id).toHashCode();
+		return new HashCodeBuilder()
+				.append(this.id)
+				.append(this.created)
+				.toHashCode();
 	}
 	
 	@Override
@@ -83,6 +86,9 @@ public class Comment {
 			return false;
 		}
 		
-		return new EqualsBuilder().append(this.id, ((Comment)obj).id).isEquals();
+		return new EqualsBuilder()
+				.append(this.id, ((Comment)obj).id)
+				.append(this.created, ((Comment)obj).created)
+				.isEquals();
 	}
 }

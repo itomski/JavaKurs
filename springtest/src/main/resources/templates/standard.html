@@ -32,11 +32,21 @@
 			<div class="navbar-collapse collapse" id="main-nav">
 				<!-- Emmet: ul#main-nav.navbar-nav>li.nav-item*5>a.nav-link -->
 				<ul class="navbar-nav">
-					<li class="nav-item"><a href="/" class="nav-link"><span class="fa fa-snowflake-o fa-lg" aria-hidden="true"></span> Home</a></li>
-					<li class="nav-item"><a href="/products" class="nav-link"><i class="fa fa-cubes fa-lg" aria-hidden="true"></i> Produkte</a></li>
-					<li class="nav-item"><a href="/services" class="nav-link"><i class="fa fa-gamepad fa-lg" aria-hidden="true"></i> Service</a></li>
-					<li class="nav-item"><a href="/team" class="nav-link"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Team</a></li>
-					<li class="nav-item"><a href="/contact" class="nav-link"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i> Kontakt</a></li>
+					<li class="nav-item">
+						<a href="/" th:classappend="${nav} == 'home' ? 'active' : ''" class="nav-link"><span class="fa fa-snowflake-o fa-lg" aria-hidden="true"></span> Home</a>
+					</li>
+					<li class="nav-item">
+						<a href="/products" th:classappend="${nav} == 'products' ? 'active' : ''"  class="nav-link"><i class="fa fa-cubes fa-lg" aria-hidden="true"></i> Produkte</a>
+					</li>
+					<li class="nav-item">
+						<a href="/services" th:classappend="${nav} == 'service' ? 'active' : ''"  class="nav-link"><i class="fa fa-gamepad fa-lg" aria-hidden="true"></i> Service</a>
+					</li>
+					<li class="nav-item">
+						<a href="/team" th:classappend="${nav} == 'team' ? 'active' : ''"  class="nav-link"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Team</a>
+					</li>
+					<li class="nav-item">
+						<a href="/contact" th:classappend="${nav} == 'contact' ? 'active' : ''"  class="nav-link"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i> Kontakt</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -46,9 +56,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md" th:switch="${nav}">
-					
 					<div th:case="home"> 
 						<div th:replace="fragments.html :: homeTpl(${title})"></div>
+					</div>
+					
+					<div th:case="new"> 
+						<div th:replace="forms.html :: productFormTpl(${produkt})"></div>
 					</div>
 					
 					<div th:case="products"> 
@@ -67,10 +80,6 @@
 						<div th:replace="forms.html :: contactTpl(${title})"></div>
 					</div>
 					
-				</div>
-				<div class="col-md">
-					<h2 th:text="${headline2}"></h2>
-					<p th:text="${content2}"></p>
 				</div>
 			</div>
 		</div>

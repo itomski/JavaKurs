@@ -22,6 +22,12 @@ public class Service {
 		em.getTransaction().commit();
 	}
 	
+	public void addComment(Comment comment) {
+		em.getTransaction().begin();
+		em.persist(comment);
+		em.getTransaction().commit();
+	}
+	
 	public Optional<User> getUserById(int id) {
 		User u = em.find(User.class, id);
 		if(u != null) {
@@ -41,8 +47,12 @@ public class Service {
 		return q.getResultStream();
 	}
 	
-	public void updateUser(User u) {
+	public void update() {
 		em.getTransaction().begin();
 		em.getTransaction().commit();
-	}	
+	}
+	
+	public void deleteComment(Comment comment) {
+		em.remove(comment);
+	}
 }
