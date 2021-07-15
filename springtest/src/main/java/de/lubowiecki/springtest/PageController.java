@@ -1,13 +1,10 @@
 package de.lubowiecki.springtest;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,27 +63,27 @@ public class PageController {
 		model.addAttribute("title", "Unsere Produkte");
 		model.addAttribute("nav", "products");
 		model.addAttribute("produkte", repo.findAll());
-		return "standard"; // Name des Templates
+		return "standard";
 	}
 	
 	@RequestMapping("/services")
 	public String serviceAction(Model model) {
 		model.addAttribute("title", "Unsere Services");
 		model.addAttribute("nav", "service");
-		return "standard"; // Name des Templates
+		return "standard";
 	}
 	
 	@RequestMapping("/team")
 	public String teamAction(Model model) {
 		model.addAttribute("title", "Das Team");
 		model.addAttribute("nav", "team");
-		return "standard"; // Name des Templates
+		return "standard";
 	}
 	
 	@RequestMapping("/contact")
 	public String contactAction(Model model) {
 		model.addAttribute("title", "Schreiben Sie uns");
 		model.addAttribute("nav", "contact");
-		return "standard"; // Name des Templates
+		return "standard";
 	}
 }

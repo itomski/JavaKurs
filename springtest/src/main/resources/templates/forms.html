@@ -27,7 +27,7 @@
 			
 			<div class="mb-3">
 				<label for="" class="form-label">Preis</label>
-				<input type="text" class="form-control" name="price" id="price" th:value="${#numbers.formatDecimal(produkt.price, 3, 2, 'COMMA')}" />
+				<input type="text" class="form-control" th:field="*{price}" />
 			</div>
 			
 			<button type="submit" class="btn btn-success">Speichern</button>

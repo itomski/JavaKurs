@@ -57,10 +57,6 @@ public class Product implements Serializable {
 		this.price = price;
 	}
 	
-	public void setPrice(String price) {
-		this.price = Double.parseDouble(price.replace(",", "."));
-	}
-
 	public Integer getId() {
 		return id;
 	}
